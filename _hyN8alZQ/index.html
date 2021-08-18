@@ -6,7 +6,7 @@
 
 <title>你是不是真的需要一个软路由 | pan2333的博客</title>
 
-<link rel="shortcut icon" href="https://pan2333.github.io/favicon.ico?v=1629271982165">
+<link rel="shortcut icon" href="https://pan2333.github.io/favicon.ico?v=1629272338637">
 
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://pan2333.github.io/styles/main.css">
@@ -77,7 +77,7 @@
             
         </div>
         <div style="text-align: center">
-            <form id="gridea-search-form" style="position: relative" data-update="1629271982165" action="/search/index.html">
+            <form id="gridea-search-form" style="position: relative" data-update="1629272338637" action="/search/index.html">
                 <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
                 <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
             </form>
@@ -102,11 +102,36 @@
                     
                 </div>
                 <div class="post-content">
-                    <h2 id="我为什么要买软路由">我为什么要买软路由</h2>
+                    <p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E6%88%91%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%B9%B0%E8%BD%AF%E8%B7%AF%E7%94%B1">我为什么要买软路由</a></li>
+<li><a href="#%E8%B4%AD%E4%B9%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91">购买的一些坑</a></li>
+<li><a href="#%E6%9C%BA%E5%99%A8%E5%BA%95%E5%B1%82">机器底层</a>
+<ul>
+<li><a href="#1esxi">1.ESXI</a></li>
+<li><a href="#2unraid">2.UNRAID</a></li>
+<li><a href="#3proxmox-virtual-environmentpve">3.Proxmox Virtual Environment（PVE</a></li>
+<li><a href="#network-storage-types-supported">Network storage types supported</a></li>
+<li><a href="#local-storage-types-supported">Local storage types supported</a></li>
+</ul>
+</li>
+<li><a href="#%E6%88%91%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E4%BA%86pve">我为什么选了PVE</a>
+<ul>
+<li><a href="#docker%E4%B8%93%E5%B1%9E%E8%99%9A%E6%8B%9F%E6%9C%BA">DOCKER专属虚拟机</a></li>
+<li><a href="#%E6%88%91%E7%9A%84%E4%B8%80%E4%BA%9B%E6%8E%A8%E8%8D%90">我的一些推荐</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</p>
+<h2 id="我为什么要买软路由">我为什么要买软路由</h2>
 <p>我打算虚拟机多开op+黑群晖+docker，而斐讯N1已经达不到我的要求，N1作为旁路由还是可以的，但带多个docker还是不太行，毕竟配置摆在那里。所以我买了个j4125+4<em>2.5的软路由，找aki py两个苹果原装内存</em>1，279买了紫光480g作为储存，别问我为啥不买nvme，问就是穷。</p>
 <figure data-type="image" tabindex="1"><img src="https://pan2333.github.io/post-images/1629268870024.jpg" alt="" loading="lazy"></figure>
 <h2 id="购买的一些坑">购买的一些坑</h2>
-<h2 id="首先商品页面上说支持19v电源后来进群才知道主板默认不支持得去掉一个三极管才行白白花费了我的时间其次1中苹果原装内存在商品详情页中是可以使用的但是插入无法使用美光的内存条不兼容-我只好在咸鱼上又买了根科赋的条光内存条和电源就白白拖了我一个星期-所以买这种diy产品需谨慎如果不是对某些功能有强烈需求建议买大厂主板假如你恰巧财力雄厚建议直接买服务器主板">首先，商品页面上说支持19v电源，后来进群才知道主板默认不支持，得去掉一个三极管才行，白白花费了我的时间，其次*1中苹果原装内存在商品详情页中是可以使用的，但是插入无法使用，美光的内存条不兼容。我只好在咸鱼上又买了根科赋的条，光内存条和电源就白白拖了我一个星期。所以买这种DIY产品需谨慎，如果不是对某些功能有强烈需求建议买大厂主板，假如你恰巧财力雄厚建议直接买服务器主板。</h2>
+<p>首先，商品页面上说支持19v电源，后来进群才知道主板默认不支持，得去掉一个三极管才行，白白花费了我的时间，其次*1中苹果原装内存在商品详情页中是可以使用的，但是插入无法使用，美光的内存条不兼容。我只好在咸鱼上又买了根科赋的条，光内存条和电源就白白拖了我一个星期。所以买这种DIY产品需谨慎，如果不是对某些功能有强烈需求建议买大厂主板，假如你恰巧财力雄厚建议直接买服务器主板。</p>
+<hr>
 <h2 id="机器底层">机器底层</h2>
 <p>由于我准备虚拟机跑所需要的环境，为的是避免all in boom，一个虚拟机出现问题了对其他虚拟机不会造成影响。所以我打算在EXSI.UNRAID和PVE中选择。我先简单介绍下这三种系统。</p>
 <h3 id="1esxi">1.ESXI</h3>
@@ -122,13 +147,15 @@
 <p><strong>方便用户使用的体验</strong></p>
 <p>利用基于 HTML5 标准的内置现代 UI 管理日常行政操作。对于需要实现运维自动化的客户，VMware 提供 vSphere 命令行界面和便于开发人员使用、基于 REST的 API</p>
 <hr>
-<h3 id="2unraid-httpsunraidnetzh">2.UNRAID https://unraid.net/zh</h3>
-<p><strong>解放你的硬件</strong><br>
+<h3 id="2unraid">2.UNRAID</h3>
+<p>https://unraid.net/zh<br>
+<strong>解放你的硬件</strong><br>
 借助 Unraid OS，媒体爱好者、游戏玩家和  其它数据密集型用户可以任意搭配硬件，进而<br>
 实现对数据、媒体和应用程序的终极控制。</p>
 <p><strong>控制您的数据</strong><br>
 打破单一操作系统的局限性。在 Unraid 中，您可以对系统资源进行分区，以存储和保护数据、运行应用程序和/或在独立环境下创建虚拟机。</p>
-<h3 id="3proxmox-virtual-environmentpve-httpspveproxmoxcomwikimain_page">3.Proxmox Virtual Environment（PVE https://pve.proxmox.com/wiki/Main_Page</h3>
+<h3 id="3proxmox-virtual-environmentpve">3.Proxmox Virtual Environment（PVE</h3>
+<p>https://pve.proxmox.com/wiki/Main_Page</p>
 <p><strong>Proxmox 虚拟环境</strong>是基于 QEMU/KVM 和 LXC 的开源服务器虚拟化管理解决方案。您可以使用集成的易于使用的 Web 界面或通过 CLI 管理虚拟机器、容器、高度可用的集群、存储和网络。Proxmox VE 代码根据 GNU Affero 通用公共许可证（第 3 版）获得许可。该项目是由<a href="https://www.proxmox.com/">Proxmox服务器解决方案有限公司</a>开发和维护的。</p>
 <p>有关 Proxmox VE 关键功能的概述，请参阅<a href="https://www.proxmox.com/en/proxmox-ve/features">Proxmox 网站</a>。</p>
 <p>(PVEj接下来的部分是我写的，请多担待)</p>
@@ -268,9 +295,9 @@ Run 'docker COMMAND --help' for more information on a command.
 </code></pre>
 <p>一般常用的docker命令也就是 ps ps-a pull push start stop rm 这些命令。</p>
 <h3 id="我的一些推荐">我的一些推荐</h3>
-<h4 id="wallabag-httpsdocwallabagorgenadmininstallationinstallationhtmlinstallation-介绍文章-httpswwwappinncomwallabag">wallabag https://doc.wallabag.org/en/admin/installation/installation.html#installation 介绍文章 https://www.appinn.com/wallabag/</h4>
-<h4 id="halo-httpsdocshalorun-个人觉得这个作为博客系统比wp好些wp功能比较多显得臃肿而且强烈推荐付费不太好">halo https://docs.halo.run/ 个人觉得这个作为博客系统比wp好些，wp功能比较多显得臃肿而且强烈推荐付费不太好。</h4>
-<h4 id="home-assistant-这个智能家居控制系统我也不用多介绍了吧">Home Assistant 这个智能家居控制系统我也不用多介绍了吧</h4>
+<p>wallabag https://doc.wallabag.org/en/admin/installation/installation.html#installation 介绍文章 https://www.appinn.com/wallabag/<br>
+halo https://docs.halo.run/ 个人觉得这个作为博客系统比wp好些，wp功能比较多显得臃肿而且强烈推荐付费不太好。<br>
+Home Assistant 这个智能家居控制系统我也不用多介绍了吧</p>
 <p>未完待续（滑稽</p>
 
                 </div>
